@@ -1,5 +1,6 @@
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
+import { Toaster } from "@/components/ui/toaster";
 import { UserProvider } from "@/context/UserProvider";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -27,6 +28,7 @@ export default function RootLayout({
           <div className='flex-1 max-w-7xl m-auto w-[90%]'>
             {children}
           </div>
+          <Toaster />
           <Footer />
         </UserProvider>
       </body>

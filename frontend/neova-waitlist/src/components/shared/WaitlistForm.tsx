@@ -1,16 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { mutate } from 'swr';
 import { z } from "zod";
-import { Label } from "@/components/ui/label";
 const formSchema = z.object({
     twitter: z.string().optional(),
     email: z.string().email({ message: "Invalid email address." }),
 });
 const WaitlistForm = () => {
+    const { toast } = useToast();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -19,9 +21,41 @@ const WaitlistForm = () => {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-    }
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log('Success:', data);
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (data.message !== "Success") {
+                throw new Error(data.message);
+            }
+            mutate('/api/waitlist'); // Invalidate the cache
+            toast({
+                description: "You have been added to the waitlist!",
+                variant: "success",
+            })
+        } catch (error) {
+            console.error('Error:', error);
+            toast({
+                description: "There was an error adding you to the waitlist. Please try again.",
+                variant: "destructive",
+            })
+        }
+    };
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="rounded-md">
