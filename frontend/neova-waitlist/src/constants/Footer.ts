@@ -4,7 +4,7 @@ import { IoLogoDiscord } from 'react-icons/io5';
 export const Community = [
     {
         label: "Twitter",
-        href: "https://twitter.com",
+        href: "https://twitter.com/Neova_Protocol",
         icon: FaSquareXTwitter,
     },
     {

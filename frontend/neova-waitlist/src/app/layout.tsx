@@ -11,7 +11,7 @@ const inter = Plus_Jakarta_Sans({ weight: '400', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Neova",
-  description: "Neova description",
+  description: "DePIN Layer empowering a data management protocol with a native storage function",
 };
 export default function RootLayout({
   children,

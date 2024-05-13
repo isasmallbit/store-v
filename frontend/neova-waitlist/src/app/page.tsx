@@ -1,5 +1,4 @@
 "use client";
-import Image from 'next/image';
 import WaitlistForm from "@/components/shared/WaitlistForm";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,6 +7,7 @@ import {
     CardHeader,
     CardTitle
 } from "@/components/ui/card";
+import Image from 'next/image';
 import Link from 'next/link';
 import { FaXTwitter } from "react-icons/fa6";
 export default function Home() {
@@ -64,7 +64,7 @@ const LeftPart = () => {
 
 const RightPart = () => {
     return (
-        <section className="flex flex-col w-full md:w-1/2 gap-4 bg-backgoundSecondary md:px-16 md:py-28 rounded-3xl justify-center items-center relative overflow-hidden">
+        <section className="flex flex-col w-full md:w-1/2 gap-4 bg-[#E1E1FE] md:px-16 md:py-28 rounded-3xl justify-center items-center relative overflow-hidden">
             <Card className="w-full border-none rounded-3xl z-20">
                 <CardHeader className="py-16">
                     <CardTitle className="text-center font-extrabold">Join the waitlist</CardTitle>
