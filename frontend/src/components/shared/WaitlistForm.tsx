@@ -1,18 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { mutate } from 'swr';
-import { z } from "zod";
+import {Button} from "@/components/ui/button";
+import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {useToast} from "@/components/ui/use-toast";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {useForm} from "react-hook-form";
+import {mutate} from 'swr';
+import {z} from "zod";
+
 const formSchema = z.object({
     twitter: z.string().optional(),
-    email: z.string().email({ message: "Invalid email address." }),
+    email: z.string().email({message: "Invalid email address."}),
 });
 const WaitlistForm = () => {
-    const { toast } = useToast();
+    const {toast} = useToast();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -23,7 +24,7 @@ const WaitlistForm = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await fetch('/api/waitlist', {
+            const response = await fetch('https://api.neova.io/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,21 +33,12 @@ const WaitlistForm = () => {
             });
 
             if (!response.ok) {
-                console.log("here error")
-                console.log("response.status", response.status)
-                if (response.status === 409) {
-                    const data = await response.json();
-                    console.log("data", data)
-                    const message = data.message;
-                    console.log("message", message)
-                    toast({
-                        description: message === 'This email is already registered'
-                            ? "This email is already registered"
-                            : "This Twitter account is already registered",
-                        variant: "destructive",
-                    })
-                    throw new Error(message);
-                }
+                const data = await response.json();
+                const message = data.message;
+                toast({
+                    description: message,
+                    variant: "destructive",
+                })
             }
 
             mutate('/api/waitlist'); // Invalidate the cache
@@ -57,9 +49,7 @@ const WaitlistForm = () => {
         } catch (error: any) {
             console.error('Error:', error);
             toast({
-                description: error.message === 'This email is already registered'
-                    ? "This email is already registered"
-                    : "There was an error adding you to the waitlist. Please try again.",
+                description: error.message,
                 variant: "destructive",
             });
         }
@@ -71,13 +61,14 @@ const WaitlistForm = () => {
                     <FormField
                         control={form.control}
                         name="twitter"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem className="w-full">
                                 <Label htmlFor="twitter" className="text-sm">Enter your X/Twitter</Label>
                                 <FormControl>
-                                    <Input placeholder="Your X account" {...field} className="border-primary focus-visible:ring-0" />
+                                    <Input placeholder="Your X account" {...field}
+                                           className="border-primary focus-visible:ring-0"/>
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
@@ -85,13 +76,15 @@ const WaitlistForm = () => {
                     <FormField
                         control={form.control}
                         name="email"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem className="w-full">
-                                <Label htmlFor="email" className="text-sm">Enter your email<span className="text-red-500">*</span></Label>
+                                <Label htmlFor="email" className="text-sm">Enter your email<span
+                                    className="text-red-500">*</span></Label>
                                 <FormControl>
-                                    <Input placeholder="Your email address" {...field} className="border-primary focus-visible:ring-0" />
+                                    <Input placeholder="Your email address" {...field}
+                                           className="border-primary focus-visible:ring-0"/>
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
