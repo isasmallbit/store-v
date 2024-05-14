@@ -7,10 +7,14 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: alphyRaCKyhO
-      POSTGRES_PASSWORD: n24h|R}IQx<MOx:>7ulm1
+      POSTGRES_PASSWORD: 1kwMA9vkITZIHf831Ny90AN31iZaiKWhgDs36labsO8HGEjFeF
       POSTGRES_DB: postgres
   frontend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: postgresql://alphyRaCKyhO:1kwMA9vkITZIHf831Ny90AN31iZaiKWhgDs36labsO8HGEjFeF@neova.io:5432/postgres
     container_name: frontend
     restart: always
     ports:
