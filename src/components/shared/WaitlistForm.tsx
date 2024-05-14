@@ -32,28 +32,36 @@ const WaitlistForm = () => {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                console.log("here error")
+                console.log("response.status", response.status)
+                if (response.status === 409) {
+                    const data = await response.json();
+                    console.log("data", data)
+                    const message = data.message;
+                    console.log("message", message)
+                    toast({
+                        description: message === 'This email is already registered'
+                            ? "This email is already registered"
+                            : "This Twitter account is already registered",
+                        variant: "destructive",
+                    })
+                    throw new Error(message);
+                }
             }
 
-            const data = await response.json();
-            console.log('Success:', data);
-            if (data.error) {
-                throw new Error(data.error);
-            }
-            if (data.message !== "Success") {
-                throw new Error(data.message);
-            }
             mutate('/api/waitlist'); // Invalidate the cache
             toast({
                 description: "You have been added to the waitlist!",
                 variant: "success",
             })
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error:', error);
             toast({
-                description: "There was an error adding you to the waitlist. Please try again.",
+                description: error.message === 'This email is already registered'
+                    ? "This email is already registered"
+                    : "There was an error adding you to the waitlist. Please try again.",
                 variant: "destructive",
-            })
+            });
         }
     };
     return (

@@ -9,12 +9,12 @@ export const Community = [
     },
     {
         label: "Discord",
-        href: "https://discord.com",
+        href: "/",
         icon: IoLogoDiscord,
     },
     {
         label: "Linkedin",
-        href: "https://linkedin.com",
+        href: "/",
         icon: FaLinkedin,
     },
 ];
