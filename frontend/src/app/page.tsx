@@ -9,10 +9,9 @@ import {
 } from "@/components/ui/card";
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaXTwitter } from "react-icons/fa6";
 export default function Home() {
     return (
-        <main className="flex flex-col-reverse md:flex-row justify-center items-stretch gap-8 pt-16 w-full">
+        <main className="flex flex-col md:flex-row justify-center items-stretch gap-8 pt-16 w-full">
             <LeftPart />
             <RightPart />
         </main>
@@ -23,7 +22,7 @@ export default function Home() {
 const LeftPart = () => {
     return (
         <section className='flex flex-col items-center w-full md:w-1/2 justify-center gap-8'>
-            <div className='flex flex-col justify-center items-center gap-8'>
+            <div className='flex flex-col justify-between items-center gap-8 h-full'>
                 <h3 className="text-2xl text-center md:w-2/3">
                     <span className="font-extrabold">
                         Get into private storage &nbsp;
@@ -35,17 +34,17 @@ const LeftPart = () => {
                         tailor-made protocol
                     </span>
                 </h3>
-                <p className="text-xs md:w-2/3 text-center">
+                <p className="text-sm md:w-2/3 text-center">
                     The Blockchain technology enhances storage opportunities. With our own application, secure your account by registering your information.
                 </p>
-                <Link href="https://twitter.com">
-                    <Button variant={"link2"} size={"link2"}>
-                        Keep me updated
+                <Link href="https://twitter.com/Neova_Protocol" target="_blank">
+                    <Button variant={"link2"} size={"link2"} className="uppercase">
+                        Learn more
                     </Button>
                 </Link>
-                <Link href="https://twitter.com">
+                {/* <Link href="https://twitter.com">
                     <FaXTwitter size={24} />
-                </Link>
+                </Link> */}
                 <video
                     className="rounded-3xl"
                     autoPlay
@@ -65,9 +64,9 @@ const LeftPart = () => {
 const RightPart = () => {
     return (
         <section className="flex flex-col w-full md:w-1/2 gap-4 bg-[#E1E1FE] md:px-16 md:py-28 rounded-3xl justify-center items-center relative overflow-hidden">
-            <Card className="w-full border-none rounded-3xl z-20">
+            <Card className="w-full md:border-none rounded-3xl z-20 max-md:bg-muted max-md:border">
                 <CardHeader className="py-16">
-                    <CardTitle className="text-center font-extrabold">Join the waitlist</CardTitle>
+                    <CardTitle className="text-2xl text-center font-extrabold">Join the waitlist</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <WaitlistForm />

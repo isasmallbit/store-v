@@ -19,7 +19,7 @@ const Footer = () => {
                     </div>
                     <span className='text-xs md:text-base text-muted-foreground max-sm:text-center'>@ 2024. All rights reserved.</span>
                 </div>
-                <section className='flex justify-center gap-8 max-sm:flex-col max-sm:items-center max-sm:mt-8'>
+                <section className='flex justify-center gap-8 md:gap-24 max-sm:flex-col max-sm:items-center max-sm:mt-8'>
                     <div className='flex flex-col items-center sm:items-end gap-4'>
                         <Label className='text-base md:text-lg lg:text-xl font-extrabold'>Quick Links</Label>
                         <div className="flex flex-row sm:flex-col items-end gap-4 flex-wrap justify-center">
