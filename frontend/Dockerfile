@@ -7,7 +7,7 @@ COPY package.json ./
 RUN npm install -g pnpm
 RUN pnpm install
 
-COPY .. .
+COPY . .
 
 RUN pnpm run build
 
@@ -18,7 +18,6 @@ WORKDIR /app
 ENV NODE_ENV production
 
 COPY --from=builder /app/package.json ./
-
 RUN npm install -g pnpm
 RUN pnpm install --production
 
