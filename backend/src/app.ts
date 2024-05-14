@@ -6,7 +6,7 @@ async function bootstrap() {
 
   app.enableCors({
     credentials: true,
-    origin: ['https://neova.io', 'http://localhost:5173'],
+    origin: ['https://neova.io','https://www.neova.io', 'http://localhost:5173'],
   });
 
   await app.listen(8080);
