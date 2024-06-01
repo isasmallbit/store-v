@@ -72,7 +72,7 @@ const RightPart = () => {
                         <p className="text-lg font-extrabold text-foreground">To be eligible:</p>
                         <div className="flex flex-col gap-2">
                             <p className="font-bold">1. Follow <Link href="https://twitter.com/Neova_Protocol" target="_blank" className="text-primary">@Neova_Protocol</Link> on X</p>
-                            <p className="font-bold">2. RT & Like <Link href="https://x.com/Neova_Protocol/status/1796542404960616492" target="_blank" className="text-primary">this tweet</Link></p>
+                            <p className="font-bold">2. RT & Like <Link href="https://x.com/Neova_Protocol/status/1796542404960616492" target="_blank" className="text-primary">this Tweet</Link></p>
                         </div>
 
 
