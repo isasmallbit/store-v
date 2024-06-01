@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
+    CardDescription,
     CardHeader,
     CardTitle
 } from "@/components/ui/card";
@@ -65,9 +66,21 @@ const RightPart = () => {
     return (
         <section className="flex flex-col w-full md:w-1/2 gap-4 bg-[#E1E1FE] md:px-16 md:py-28 rounded-3xl justify-center items-center relative overflow-hidden">
             <Card className="w-full md:border-none rounded-3xl z-20 max-md:bg-muted max-md:border">
-                <CardHeader className="py-16">
-                    <CardTitle className="text-2xl text-center font-extrabold">Join the waitlist</CardTitle>
+                <CardHeader className="py-16 space-y-4">
+                    <CardTitle className="text-2xl text-center font-extrabold">Join the Neova waitlist</CardTitle>
+                    <CardDescription className="text-center space-y-4">
+                        <p className="text-lg font-extrabold text-foreground">To be eligible:</p>
+                        <div className="flex flex-col gap-2">
+                            <p className="font-bold">1. Follow <Link href="https://twitter.com/Neova_Protocol" target="_blank" className="text-primary">@Neova_Protocol</Link> on X</p>
+                            <p className="font-bold">2. RT & Like <Link href="https://x.com/Neova_Protocol/status/1796542404960616492" target="_blank" className="text-primary">this tweet</Link></p>
+                        </div>
+
+
+                    </CardDescription>
+
+
                 </CardHeader>
+
                 <CardContent>
                     <WaitlistForm />
                 </CardContent>
