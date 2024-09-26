@@ -9,7 +9,7 @@ import * as process from 'node:process';
   imports: [
     UserModule,
     ConfigModule.forRoot({
-      envFilePath: `${process.env.NODE_ENV}.env`,
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
