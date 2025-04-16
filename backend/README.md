@@ -1,4 +1,4 @@
-# Waitlist front end
+# Backend waitlist-api
 
 If you want to know more about the project, check the neova-doc repo
 

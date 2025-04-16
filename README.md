@@ -1,4 +1,4 @@
-# Waitlist front end
+# Global repo for waitlist
 
 If you want to know more about the project, check the neova-doc repo
 
